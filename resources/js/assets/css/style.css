@@ -1,0 +1,144 @@
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items at the top */
+            height: auto; /* Adjust height to auto */
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%; /* Full width */
+            max-width: 1200px;
+            align-items: flex-start; /* Align items at the top */
+            justify-content: center;
+            padding: 0; /* Remove any padding */
+        }
+
+        .illustration-section {
+            display: flex;
+            width: 50%;
+            align-items: center;
+            justify-content: center;
+            height: 100%; /* Ensure it takes full height */
+        }
+
+        .illustration-section {
+            display: none;
+        }
+
+        .illustration img {
+            width: 100%; /* Make image fill the container */
+            height: 100%; /* Make image fill the container */
+            object-fit: cover; /* Ensure the image covers the whole section */
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 600;
+            padding-top: 5px;
+            margin: 0 0 20px 0; /* Removed the left margin */
+        }
+
+        .logo img {
+            height: 24px;
+        }
+
+        .welcome-text {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 80px;
+        }
+
+        .signup-link {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input2 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            background-color: #1F1F1F;
+            color: #fff;
+            border: none;
+            border-radius: 10px; /* Rounded pill shape */
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #A8E239;
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .forgot-password {
+            margin-top: 5px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #ECECEC;
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .login-section {
+                width: 40%;
+                text-align: left;
+            }
+
+            .illustration-section {
+                display: flex;
+                width: 50%;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .illustration img {
+                max-width: 100%;
+            }
+        }
