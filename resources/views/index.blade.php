@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif; /* Use Poppins font */
@@ -27,33 +28,108 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* Style for the navigation list */
-        nav ul {
+        /* General Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            flex: 1;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
             list-style: none;
+            display: flex;
+            justify-content: center;
+            flex: 2;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center; /* Center the items horizontally */
-            align-items: center; /* Optional: vertically center items if the nav has height */
         }
 
-        /* Style for each navigation item */
-        nav li {
-            margin-left: 20px;
+        .nav-links li {
+            margin: 0 15px;
         }
 
-        /* Style for the links inside the navigation */
-        nav a {
+        .nav-links a {
             text-decoration: none;
-            color: #343a40;
-            font-weight: 500; /* Slightly bolder */
+            color: #0070ba;
+            font-weight: bold;
+            transition: color 0.3s;
         }
 
-        /* Center the 'Log in' and 'Sign Up' buttons */
-        nav div {
+        .nav-links a:hover {
+            color: #005bb5;
+        }
+
+        .nav-buttons {
             display: flex;
-            align-items: center; /* Center the buttons vertically */
-            gap: 10px; /* Space between buttons */
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            background: white;
+            border: 2px solid #0070ba;
+            color: #0070ba;
+        }
+
+        .signup-btn {
+            background: blue;
+            border: 2px solid #0070ba;
+            color: white;
+        }
+
+        /* Mobile Navbar */
+        .hamburger {
+            margin-left: auto; /* Pushes it to the right */
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
         }
 
         features-logo {
@@ -506,34 +582,36 @@
     </style>
 </head>
 <body>
-        <nav style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
-            <div style="flex: 1;">
-                <!-- <a href="#">smart</a> -->
-                <img src="images/logo.png" alt="Image 1" class="features__logo">  
-            </div>
-            <ul style="list-style: none; display: flex; margin: 0; padding: 0; justify-content: center; flex: 2;">
-                <li style="margin-right: 20px;"><a href="#">PERSONAL</a></li>
-                <li style="margin-right: 20px;"><a href="#">BUSINESS</a></li>
-                <li style="margin-right: 20px;"><a href="#">PARTNERS AND DEVELOPERS</a></li>
-            </ul>
-            <div>
-                <a href="/login" style="background: white;
-                    border: 2px solid #0070ba;
-                    color: #0070ba;
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    text-decoration: none;
-                    font-weight: bold;">Log in
-                </a>
-                <a href="/register" style="background-color: #007bff; background: blue;
-                    border: 2px solid #0070ba;
-                    color: white;
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    text-decoration: none;
-                    font-weight: bold;">Sign Up</a>
-            </div>
-        </nav>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        
+        <!-- <div class="hamburger" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div> -->
+
+        <ul class="nav-links" id="navMenu">
+            <li><a href="#">PERSONAL</a></li>
+            <li><a href="#">BUSINESS</a></li>
+            <li><a href="#">PARTNERS AND DEVELOPERS</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="/login" class="login-btn">Log in</a>
+            <a href="/register" class="signup-btn">Sign Up</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('show');
+        }
+    </script>
 
 
         <section class="hero">

