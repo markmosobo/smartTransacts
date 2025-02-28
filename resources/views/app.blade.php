@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="{{ asset('storage/images/logo-icon.ico') }}" type="image/x-icon">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -148,13 +149,47 @@
                 max-width: 100%;
             }
         }
+
+        /* Mobile-specific styles */
+        @media (max-width: 767px) {
+            .container {
+                padding: 0 20px; /* Adds equal space on both left and right sides */
+            }
+
+            .login-section {
+                width: 100%; /* Ensures the login section takes full width on mobile */
+            }
+
+            .logo {
+                margin-top: 20px; /* Adds space at the top */
+            }
+
+            .welcome-text {
+                margin-top: 40px; /* Adds space at the top */
+            }
+
+            .signup-link {
+            }
+
+            .input-group, .input2 {
+                margin-bottom: 15px; /* Reduces space between input fields */
+            }
+
+            button {
+                margin-top: 20px; /* Adds space above the button */
+            }
+
+            .forgot-password {
+                text-align: right; /* Centers the forgot password link */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="login-section">
             <div class="logo">
-                <img src="images/paxful.png" alt="Paxful Logo">
+                <img src="{{ asset('storage/images/paxful.png') }}" alt="Paxful Logo">
                 paxful
             </div>
             <div class="welcome-text">Welcome back!</div>
@@ -176,7 +211,7 @@
         </div>
         <div class="illustration-section">
             <div class="illustration">
-                <img src="images/svg.png" alt="Illustration">
+                <img src="{{ asset('storage/images/svg.PNG') }}" alt="Illustration">
             </div>
         </div>
     </div>

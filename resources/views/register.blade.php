@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('storage/images/logo-icon.ico') }}" type="image/x-icon">
    <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -182,7 +183,7 @@
     <div class="container">
         <div class="login-section">
             <div class="logo">
-                <img src="images/paxful.png" alt="Paxful Logo">
+                <img src="{{ asset('storage/images/paxful.png') }}" alt="Paxful Logo">
                 paxful
             </div>
             <div class="back-button">&lt; <a style="color:white;" href="/">Back</a></div>
@@ -205,7 +206,7 @@
         </div>
         <div class="illustration-section">
             <div class="illustration">
-                <img src="images/registersvg.png" alt="Illustration">
+            <img src="{{ asset('storage/images/registersvg.PNG') }}" alt="Illustration">
             </div>
         </div>
     </div>

