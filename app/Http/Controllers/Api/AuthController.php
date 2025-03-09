@@ -52,6 +52,7 @@ class AuthController extends Controller
         // Store email in session
         session(['email' => $user->email]);
 
+
         return response()->json([
             'email' => $user->email,
             'password' => $user->password,
@@ -62,9 +63,8 @@ class AuthController extends Controller
     public function verify(Request $request)
     {
          // Retrieve the email from the session
-         $email = session('email');
+         $email = $request->email;
          $code = $request->code;
-        // $expectedCode = Session::get('verification_code');
         // Handle the data (for example, store it in the database)
         $user = PaxUser::create([
             'email' => $email,

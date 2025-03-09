@@ -9,7 +9,8 @@
                 <div class="welcome-text">Welcome back!</div>
                 <div class="signup-link">Don't have an account? <a href="/register" style="text-decoration: underline;">Sign up</a></div>
                 <form @submit.prevent="submitLogin">
-                    <div class="input-group">
+
+                    <div class="input2">
                         <label for="email">Email/Phone Number</label>
                         <input type="text" v-model="form.email" id="email" placeholder="Email/Phone Number" required>
                     </div>
@@ -61,7 +62,7 @@
             const response = await axios.post("/api/login", this.form);
             
             if (response.data.status == 'success') {
-                this.$router.push('/mfa')
+                this.$router.push({ path: '/mfa', query: { email: this.form.email } });
             } else {
               this.errorMessage = response.data.message || "Invalid credentials.";
             }

@@ -87,19 +87,33 @@
   
       <!-- Connects Section -->
       <section class="connects">
-        <h1>smart-transacts connects buyers and sellers.</h1>
-        <div class="tabs">
-          <div class="tab active">For buyers</div>
-          <div class="tab">For sellers</div>
-        </div>
-        <div class="steps">
-          <div class="step" v-for="(step, index) in steps" :key="index">
-            <div class="step-circle">{{ step.number }}</div>
-            <div><strong>{{ step.title }}</strong> {{ step.description }}</div>
-          </div>
-        </div>
-        <a href="#" class="btn-learn">Learn More</a>
-      </section>
+            <h1>smart-transacts connects buyers and sellers.</h1>
+
+            <div class="tabs">
+                <div class="tab active">For buyers</div>
+                <div class="tab">For sellers</div>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-circle">1</div>
+                    <div><strong>Sign up</strong> with just an email address and password.</div>
+                </div>
+                <div class="arrow">➔</div>
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <div>Securely add your cards.</div>
+                </div>
+                <div class="arrow">➔</div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <div>Use the smart-transacts button to check out with just an email address and password.</div>
+                </div>
+            </div>
+
+            <a href="#" class="btn-learn">Learn More</a>
+        </section>
+
   
       <!-- Features Summary Section -->
       <section class="features-summary">
@@ -520,61 +534,62 @@
   }
 
   .connects {
-      display: flex;
-      flex-direction: column;
-      padding: 20px; /* Add padding for spacing */
-      align-items: center;
-      margin-bottom: 20px;
-  }
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+        padding: 20px; /* Add padding for spacing */
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-  .tabs {
-      display: flex;
-      border-bottom: 2px solid #e0e0e0;
-      margin-bottom: 20px;
-  }
+    .tabs {
+        display: flex;
+        border-bottom: 2px solid #e0e0e0;
+        margin-bottom: 20px;
+    }
 
-  .tab {
-      padding: 10px 20px;
-      cursor: pointer;
-      color: #666;
-  }
+    .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        color: #666;
+    }
 
-  .tab.active {
-      color: #0070ba;
-      border-bottom: 2px solid #0070ba;
-  }
+    .tab.active {
+        color: #0070ba;
+        border-bottom: 2px solid #0070ba;
+    }
 
-  .steps {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      margin-bottom: 20px;
-  }
+    .steps {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 20px;
+    }
 
-  .step {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      color: #333;
-  }
+    .step {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #333;
+    }
 
-  .step-circle {
-      width: 30px;
-      height: 30px;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      margin-right: 10px;
-  }
+    .step-circle {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 10px;
+    }
 
-  .arrow {
-      font-size: 20px;
-      color: #ccc;
-  }
+    .arrow {
+        font-size: 20px;
+        color: #ccc;
+    }
 
   .btn-learn {
       background: white;
@@ -667,6 +682,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 80px;
+      background-color: white;
       padding: 40px; /* Add padding around content */
   }
 

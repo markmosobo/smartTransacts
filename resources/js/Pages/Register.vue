@@ -16,8 +16,9 @@
         <div class="welcome-text">Create an account</div>
         <div class="signup-link">Already have an account? <a href="/login">Sign in</a></div>
         <form @submit.prevent="submitRegister">
-            <div class="input-group">
-            <input type="text" id="email" v-model="form.email" name="email" placeholder="Enter your email here" required />
+          <div class="input2">
+              <label for="email">Email/Phone Number</label>
+              <input type="text" v-model="form.email" id="email" placeholder="Email/Phone Number" required>
           </div>
           <button type="submit">Next</button>
         </form>
@@ -154,6 +155,11 @@
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+  }
+
+  .input2 {
+      margin-bottom: 20px;
+      position: relative;
   }
   
   input {

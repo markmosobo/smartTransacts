@@ -7,7 +7,7 @@
         <div class="back-button">&lt; <a href="/">Back</a></div>
         <div class="welcome-text">Verification</div>
         <div class="signup-link">
-          Enter the 6-digit code we sent to the authenticator associated with your account:<strong></strong>
+          Enter the 6-digit code we sent to the authenticator associated with your account:<strong>{{ email }}</strong>
         </div>
         <div class="signup-link">Confirmation code</div>
         <div class="input-group code-inputs">
@@ -41,6 +41,7 @@
 export default {
   data() {
     return {
+      email: this.$route.query.email || "",
       inputBoxes: Array.from({ length: 6 }, () => ({ value: '' })), // Array of input boxes
       errorMessage: false, // To show/hide error message
     };
@@ -52,6 +53,7 @@ export default {
     },
     // Handle input event
     handleInput(index) {
+      this.errorMessage = false; // Hide error when user changes input
       if (this.inputBoxes[index].value.length === 1 && index < this.inputBoxes.length - 1) {
         this.$refs[`input-${index + 1}`][0].focus(); // Move focus to the next input
       }
@@ -85,36 +87,37 @@ export default {
     checkFilled() {
       const allFilled = this.inputBoxes.every((box) => box.value !== '');
       if (allFilled) {
+        this.errorMessage = true; // Show error immediately when all inputs are filled
         const code = this.inputBoxes.map((box) => box.value).join('');
         this.submitCode(code);
-        this.errorMessage = true; // Show error immediately
-
       }
     },
 
     // Submit the code to the server
     async submitCode(code) {
       try {
-        const response = await axios.post('/api/verify', {
-          method: 'POST',
+        const response = await axios.post('/api/verify', { 
+          code, 
+          email: this.email // Include email in the request
+        }, {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-          },
-          body: JSON.stringify({ code }),
+          }
         });
 
-        const data = await response.json();
-        if (response.data.status == 'success') {
-          this.$router.push('/login')
+        if (response.data.status === 'success') {
+          this.$router.push('/login'); // Redirect on success
         } else {
-          this.errorMessage = true; // Show error message
+          this.errorMessage = true; // Show error message if the code is incorrect
         }
       } catch (error) {
         console.error('Error:', error);
-        this.errorMessage = true; // Show error message
+        this.errorMessage = true; // Show error message on network error
       }
-    },
+    }
+
+
   },
 };
 </script>
@@ -195,9 +198,11 @@ body {
 }
 
 .input-group {
-    margin-bottom: 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
+    justify-content: center;
+    max-width: 320px;
 }
 
 .input-box {
@@ -237,7 +242,6 @@ button {
 }
 
 .error-message {
-    display: none;
     color: red;
     font-weight: bold;
 }
